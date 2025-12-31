@@ -20,13 +20,13 @@ After checking out the repo, run `bundle install` to install dependencies. Then,
 
 Feel free to submit bug reports and merge requests.
 
-# Docs
+## Docs
 
 `yard doc` generates some documentation.
 
 `yard server --reload` starts a server with documentation available at http://localhost:8808
 
-# TODOs
+## TODOs
 
 - resurrect logging
 - handle Ctrl+C
