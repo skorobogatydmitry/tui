@@ -59,7 +59,7 @@ module Tui
       return self if width.nil? || @width > width # == case makes all lines width even
 
       @width = width
-      @array.collect! { |line| line_transformer.call line, @width - line.size }
+      @array.collect! { |line| line_transformer.call line, @width - Tools.calc_width(line) }
       self
     end
 
@@ -69,7 +69,7 @@ module Tui
     # @param type {Symbol} :top, :center, :bottom
     # @param height {Integer} target block height, is ignored if less than @width (look at {fit!})
     def h_align! type = :top, height: @height
-      return self if height.nil? or @array.size > height
+      return self if height.nil? || @array.size > height
 
       extra_lines_count = height - @array.size
       case type

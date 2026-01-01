@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require 'unicode/display_width'
+
 require_relative 'format'
+require_relative 'tools'
 
 module Tui
   # Basic TUI building block.
@@ -9,8 +12,7 @@ module Tui
   # So a row is a way to compose multiple columns to a single "column" (see {Block#row}), which is an {::Array} of lines anyway.
   class Block
 
-    attr_reader :width
-    attr_reader :array
+    attr_reader :width, :array
 
     # Mix-in formatting methods.
     # The {Blocks} class has only methods to make nested blocks
@@ -90,7 +92,7 @@ module Tui
     # @param other either {::Array} or {::String} to push back
     def << other
       other.is_a?(Array) ? @array += other : @array << other
-      @width = @array.collect(&:size).max
+      @width = Tools.calc_width @array
       self
     end
 
@@ -102,12 +104,12 @@ module Tui
     def >> other
       case other
       when Array
-        @width = [@width, other.collect(&:size).max].max
+        @width = [@width, Tools.calc_width(other)].max
         other.reverse_each { |i|
           @array.unshift i
         }
       when String
-        @width = [@width, other.size].max
+        @width = [@width, Tools.calc_width(other)].max
         @array.unshift other
       end
       self
@@ -122,7 +124,7 @@ module Tui
     # Modify each "row" of the {Block} inline
     def collect! &block
       @array.collect!(&block)
-      @width = @array.collect(&:size).max
+      @width = Tools.calc_width @array
     end
 
     private
@@ -136,7 +138,7 @@ module Tui
                when String then [arg]
                else [arg.to_s]
                end
-      @width = @array.collect(&:size).max
+      @width = Tools.calc_width @array
     end
   end
 end

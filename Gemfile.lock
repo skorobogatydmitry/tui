@@ -36,6 +36,7 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.16)
   rubocop (~> 1.21)
+  unicode-display_width
 
 BUNDLED WITH
    2.5.9

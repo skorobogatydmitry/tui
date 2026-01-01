@@ -30,4 +30,5 @@ Feel free to submit bug reports and merge requests.
 
 - resurrect logging
 - handle Ctrl+C
+- provide a way to gracefully interrupt execution and show summary
 - provide interface to control data fetching: frequency, caching, make it parallel
