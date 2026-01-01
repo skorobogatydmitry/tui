@@ -2,7 +2,7 @@
 
 Gem::Specification.new { |spec|
   spec.name                  = 'text-ui'
-  spec.version               = '0.2.0'
+  spec.version               = '0.2.1'
   spec.authors               = ['Skorobogaty Dmitry']
   spec.email                 = ['skorobogaty.dmitry@gmail.com']
   spec.license               = 'LGPL-3.0-only'

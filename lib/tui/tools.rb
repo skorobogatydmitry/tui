@@ -8,8 +8,8 @@ module Tui::Tools
   # but sometimes it needs re-calculating it from scratch
   def self.calc_width value
     case value
-    when Array then val.collect { |row| Unicode::DisplayWidth.of(row) }.max
-    when String then Unicode::DisplayWidth.of(val)
+    when Array then value.collect { |row| Unicode::DisplayWidth.of(row) }.max
+    when String then Unicode::DisplayWidth.of(value)
     end
   end
 end
